@@ -1,56 +1,54 @@
-using Xunit;
+namespace Parrot.Tests;
 
-namespace Parrot.Tests
+public class ParrotTest
 {
-    public class ParrotTest
+    [Fact]
+    public void GetSpeedNorwegianBlueParrot_nailed()
     {
-        [Fact]
-        public void GetSpeedNorwegianBlueParrot_nailed()
-        {
-            var parrot = new Parrot(ParrotTypeEnum.NORWEGIAN_BLUE, 0, 0, true);
-            Assert.Equal(0.0, parrot.GetSpeed());
-        }
+        Parrot parrot = new NorwegianBlue(voltage: 0, isNailed: true);
 
-        [Fact]
-        public void GetSpeedNorwegianBlueParrot_not_nailed()
-        {
-            var parrot = new Parrot(ParrotTypeEnum.NORWEGIAN_BLUE, 0, 1.5, false);
-            Assert.Equal(18.0, parrot.GetSpeed());
-        }
+        Assert.Equal(0.0, parrot.GetSpeed());
+    }
 
-        [Fact]
-        public void GetSpeedNorwegianBlueParrot_not_nailed_high_voltage()
-        {
-            var parrot = new Parrot(ParrotTypeEnum.NORWEGIAN_BLUE, 0, 4, false);
-            Assert.Equal(24.0, parrot.GetSpeed());
-        }
+    [Fact]
+    public void GetSpeedNorwegianBlueParrot_not_nailed()
+    {
+        Parrot parrot = new NorwegianBlue(isNailed: false, voltage: 1.5);
+        Assert.Equal(18.0, parrot.GetSpeed());
+    }
 
-        [Fact]
-        public void GetSpeedOfAfricanParrot_With_No_Coconuts()
-        {
-            var parrot = new Parrot(ParrotTypeEnum.AFRICAN, 0, 0, false);
-            Assert.Equal(12.0, parrot.GetSpeed());
-        }
+    [Fact]
+    public void GetSpeedNorwegianBlueParrot_not_nailed_high_voltage()
+    {
+        Parrot parrot = new NorwegianBlue(voltage: 4, isNailed: false);
+        Assert.Equal(24.0, parrot.GetSpeed());
+    }
 
-        [Fact]
-        public void GetSpeedOfAfricanParrot_With_One_Coconut()
-        {
-            var parrot = new Parrot(ParrotTypeEnum.AFRICAN, 1, 0, false);
-            Assert.Equal(3.0, parrot.GetSpeed());
-        }
+    [Fact]
+    public void GetSpeedOfAfricanParrot_With_No_Coconuts()
+    {
+        Parrot parrot = new African(numberOfCoconuts: 0);
+        Assert.Equal(12.0, parrot.GetSpeed());
+    }
 
-        [Fact]
-        public void GetSpeedOfAfricanParrot_With_Two_Coconuts()
-        {
-            var parrot = new Parrot(ParrotTypeEnum.AFRICAN, 2, 0, false);
-            Assert.Equal(0.0, parrot.GetSpeed());
-        }
+    [Fact]
+    public void GetSpeedOfAfricanParrot_With_One_Coconut()
+    {
+        Parrot parrot = new African(numberOfCoconuts: 1);
+        Assert.Equal(3.0, parrot.GetSpeed());
+    }
 
-        [Fact]
-        public void GetSpeedOfEuropeanParrot()
-        {
-            var parrot = new Parrot(ParrotTypeEnum.EUROPEAN, 0, 0, false);
-            Assert.Equal(12.0, parrot.GetSpeed());
-        }
+    [Fact]
+    public void GetSpeedOfAfricanParrot_With_Two_Coconuts()
+    {
+        Parrot parrot = new African(numberOfCoconuts: 2);
+        Assert.Equal(0.0, parrot.GetSpeed());
+    }
+
+    [Fact]
+    public void GetSpeedOfEuropeanParrot()
+    {
+        Parrot parrot = new European();
+        Assert.Equal(12.0, parrot.GetSpeed());
     }
 }
