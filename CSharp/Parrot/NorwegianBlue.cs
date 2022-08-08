@@ -11,5 +11,5 @@ public class NorwegianBlue : Parrot
         _isNailed = isNailed;
     }
 
-    public override double GetSpeed() => _isNailed ? 0 : GetBaseSpeed(_voltage);
+    public override double Speed => _isNailed ? 0.0 : System.Math.Min(24.0, BaseSpeed * _voltage);
 }

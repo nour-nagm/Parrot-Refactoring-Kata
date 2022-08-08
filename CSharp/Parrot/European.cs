@@ -2,5 +2,5 @@
 
 public class European : Parrot
 {
-    public override double GetSpeed() => GetBaseSpeed();
+    public override double Speed => BaseSpeed;
 }
